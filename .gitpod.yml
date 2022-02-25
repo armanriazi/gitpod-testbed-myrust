@@ -1,9 +1,19 @@
 tasks:
-  - init: |
-      cargo build
+  - name: Terminal 1
+    before: echo 'before script'
+  - init: cargo --version
     command: |
-      cargo run
+      cargo build
+  - name: Terminal 2
+    before: echo 'before script'
+  - init: cargo run
+    command: |
+      cargo run      
+ports:
+  - port: 8888
+    onOpen: open-preview
 
 vscode:
   extensions:
     - matklad.rust-analyzer
+    - esbenp.prettier-vscode
